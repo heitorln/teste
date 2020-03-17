@@ -19,9 +19,13 @@ const allUsers = {
           console.log('connected to db');
         });
 
-        client.query('SELECET * FROM users', function(errors, results, fields) {
-          return results;
+        let res = [];
+        client.query('SELECET * FROM users', function(error, results) {
+          if (error) throw error;
+          res = results;
         });
+
+        return res;
       } catch(err) {
         return err;
       }
